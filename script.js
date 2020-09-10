@@ -1,30 +1,29 @@
-const videoElement = document.getElementById("video")
-const button = document.getElementById("button")
+const videoElement = document.getElementById("video");
+const button = document.getElementById("button");
 
 // prompt user to select media stream, pass video element then play
-selectMediaStream = async() => {
+selectMediaStream = async () => {
     try {
-        const mediaStream = await navigator.mediaDevices.getDisplayMedia()
-        videoElement.srcObject = mediaStream
+        const mediaStream = await navigator.mediaDevices.getDisplayMedia();
+        videoElement.srcObject = mediaStream;
         videoElement.onloadedmetadata = () => {
-            videoElement.play()
-        }
+            videoElement.play();
+        };
     } catch (error) {
-        console.log("whoops, error here", error)
+        console.log("whoops, error here", error);
     }
-}
+};
 
-
-button.addEventListener("click", async() => {
+button.addEventListener("click", async () => {
     // disable button
-    button.disabled = true
+    button.disabled = true;
 
     // start pip
-    await videoElement.requestPictureInPicture()
+    await videoElement.requestPictureInPicture();
 
     // reset btn
-    button.disabled = false
-})
+    button.disabled = false;
+});
 
 // on load
-selectMediaStream()
+selectMediaStream();
